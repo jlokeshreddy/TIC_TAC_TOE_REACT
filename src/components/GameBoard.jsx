@@ -1,21 +1,15 @@
 import { useState } from "react";
 
-const initialGameBoard = [
-  [null, null, null],
-  [null, null, null],
-  [null, null, null],
-];
-
-const GameBoard = ({ selectActivePlayer, turns }) => {
-  const gameBoard = initialGameBoard;
-console.log(turns, 'turns')
-  for (const turn of turns) {
-    const { square, player } = turn;
-    const { col, row } = square;
-    console.log(col, row, 'ooooooooooo')
-    gameBoard[row][col] = player;
-    console.log(gameBoard, 'gameboard')
-  }
+const GameBoard = ({ selectActivePlayer, board }) => {
+  //   const gameBoard = initialGameBoard;
+  // console.log(turns, 'turns')
+  //   for (const turn of turns) {
+  //     const { square, player } = turn;
+  //     const { col, row } = square;
+  //     //console.log(col, row, 'ooooooooooo')
+  //     gameBoard[row][col] = player;
+  //     //console.log(gameBoard, 'gameboard')
+  //   }
 
   // const [gameBoard, setGameBoard] = useState(initialGameBoard);
 
@@ -29,8 +23,8 @@ console.log(turns, 'turns')
   // };
   return (
     <ol id="game-board">
-      {gameBoard &&
-        gameBoard.map((row, rowIndex) => (
+      {board &&
+        board.map((row, rowIndex) => (
           <li key={rowIndex}>
             <ol>
               {row &&
@@ -38,6 +32,7 @@ console.log(turns, 'turns')
                   <li key={colIndex}>
                     <button
                       onClick={() => selectActivePlayer(rowIndex, colIndex)}
+                      disabled={playerSymbol ? true : false}
                     >
                       {playerSymbol}
                     </button>
